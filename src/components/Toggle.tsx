@@ -8,7 +8,7 @@ export interface ToggleProps {
   size?: 'sm' | 'md' | 'lg';
   theme?: 'light' | 'dark' | 'auto';
   disabled?: boolean;
-  ariaLabel?: string;
+  ariaL_abel?: string;
   className?: string;
   id?: string;
 }
