@@ -1,4 +1,4 @@
-import React, { useCallback, useState, KeyboardEvent } from 'react';
+import React, { useCallback, useState, KeyboardEvent, ReactNode } from 'react';
 import '../styles/toggle.css';
 
 export interface ToggleProps {
@@ -11,6 +11,8 @@ export interface ToggleProps {
   ariaLabel?: string;
   className?: string;
   id?: string;
+  onIcon?: ReactNode;
+  offIcon?: ReactNode;
 }
 
 const SIZE_DIMENSIONS: Record<'sm' | 'md' | 'lg', { w: number; h: number; knob: number }> = {
@@ -28,7 +30,9 @@ export const Toggle: React.FC<ToggleProps> = ({
   disabled = false,
   ariaLabel,
   className,
-  id
+  id,
+  onIcon,
+  offIcon
 }) => {
   const [inner, setInner] = useState(defaultChecked);
   const isControlled = typeof checked === 'boolean';
@@ -79,7 +83,11 @@ export const Toggle: React.FC<ToggleProps> = ({
       }
     >
       <span className="tgl-track">
-        <span className="tgl-knob" />
+        <span className="tgl-knob">
+          <span className="tgl-icon">
+            {value ? onIcon : offIcon}
+          </span>
+        </span>
       </span>
     </button>
   );
