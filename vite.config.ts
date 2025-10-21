@@ -5,12 +5,8 @@ export default defineConfig({
   plugins: [react()],
   build: {
     lib: {
-      entry: 'src/index.ts',
-      name: 'Togglex',
-      fileName: (format) => `index.${format}.js`
-    },
-    rollupOptions: {
-      external: ['react', 'react-dom']
-    }
-  }
-});
+  entry: 'src/index.ts',
+  name: 'Togglex',
+  fileName: (format) => `index.${format}.js`,
+  formats: ['es', 'cjs']
+}
