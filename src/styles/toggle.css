@@ -1,0 +1,74 @@
+.tgl-root {
+  --tgl-track-off: #cbd5e1;
+  --tgl-track-on: #6366f1;
+  --tgl-track-border: transparent;
+  --tgl-knob-bg: #ffffff;
+  --tgl-focus-ring: 0 0 0 3px rgba(99, 102, 241, 0.45);
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  outline: none;
+  width: var(--tgl-width);
+  height: var(--tgl-height);
+}
+
+.tgl-root[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.tgl-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--tgl-track-off);
+  border-radius: 999px;
+  transition: background 0.25s;
+  border: 1px solid var(--tgl-track-border);
+  box-sizing: border-box;
+}
+
+.tgl-root[data-state='on'] .tgl-track {
+  background: var(--tgl-track-on);
+}
+
+.tgl-knob {
+  position: absolute;
+  top: 50%;
+  left: 2px;
+  width: var(--tgl-knob-size);
+  height: var(--tgl-knob-size);
+  background: var(--tgl-knob-bg);
+  border-radius: 50%;
+  transform: translate(0, -50%);
+  transition: transform 0.25s;
+  box-shadow: 0 2px 4px rgba(0,0,0,.25);
+  will-change: transform;
+}
+
+.tgl-root[data-state='on'] .tgl-knob {
+  transform: translate(calc(var(--tgl-width) - var(--tgl-knob-size) - 4px), -50%);
+}
+
+.tgl-root:focus-visible .tgl-track {
+  box-shadow: var(--tgl-focus-ring);
+}
+
+/* Theme hooks (можно расширять) */
+.tgl-root[data-theme='dark'] {
+  --tgl-track-off: #475569;
+  --tgl-track-on: #818cf8;
+  --tgl-knob-bg: #f1f5f9;
+
+  @media (prefers-color-scheme: dark) {
+  .tgl-root[data-theme='auto'] {
+    --tgl-track-off: #475569;
+    --tgl-track-on: #818cf8;
+    --tgl-knob-bg: #f1f5f9;
+  }
